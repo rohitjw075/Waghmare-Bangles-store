@@ -1,0 +1,1319 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Waghmare Bangles Store Birawali</title>
+
+    <meta name="theme-color" content="#5b1020">
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+
+    <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@500;600;700;800&family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+
+    <link rel="stylesheet"
+          href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
+
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+
+<!-- LOADER -->
+<div id="pageLoader" class="page-loader">
+    <div class="loader-ring"></div>
+    <h2>Waghmare Bangles</h2>
+    <p>Official Store</p>
+</div>
+
+
+<!-- TOAST -->
+<div id="toastContainer"></div>
+
+
+<!-- HEADER -->
+<header class="header">
+
+    <div class="logo-area" onclick="scrollToTop()">
+
+        <div class="logo-circle">
+            <img id="headerLogo"
+                 src="55724.png"
+                 onerror="this.style.display='none'">
+        </div>
+
+        <div>
+            <h1 id="headerStoreName">
+                Waghmare Bangles Store Birawali
+            </h1>
+
+            <small>
+                Official Store by Rohit Waghmare
+            </small>
+        </div>
+
+    </div>
+
+
+    <div class="header-actions">
+
+        <button class="icon-btn" onclick="openWishlist()">
+            <i class="fa-regular fa-heart"></i>
+            <span id="wishlistCount">0</span>
+        </button>
+
+        <button class="icon-btn" onclick="openCart()">
+            <i class="fa-solid fa-bag-shopping"></i>
+            <span id="cartCount">0</span>
+        </button>
+
+        <button class="admin-top-btn" onclick="openAdminLogin()">
+            <i class="fa-solid fa-user-shield"></i>
+            Admin
+        </button>
+
+    </div>
+
+</header>
+
+
+<!-- HERO -->
+<section class="hero">
+
+    <div class="hero-content">
+
+        <span class="eyebrow">
+            ✨ Traditional • Elegant • Beautiful
+        </span>
+
+        <h2>
+            Beautiful Bangles<br>
+            For Every Celebration
+        </h2>
+
+        <p>
+            Discover bridal, velvet, glass and gold plated bangles
+            from Waghmare Bangles Store Birawali.
+        </p>
+
+        <div class="hero-buttons">
+
+            <button class="primary-btn"
+                    onclick="document.getElementById('products').scrollIntoView({behavior:'smooth'})">
+                Shop Collection
+                <i class="fa-solid fa-arrow-right"></i>
+            </button>
+
+            <button class="outline-btn"
+                    onclick="openStoreLocation()">
+                <i class="fa-solid fa-location-dot"></i>
+                Visit Store
+            </button>
+
+        </div>
+
+    </div>
+
+
+    <div class="hero-decoration">
+
+        <div class="gold-ring ring-one"></div>
+        <div class="gold-ring ring-two"></div>
+
+        <div class="hero-card">
+            <i class="fa-solid fa-gem"></i>
+            <span>Premium Collection</span>
+        </div>
+
+    </div>
+
+</section>
+
+
+<!-- ANNOUNCEMENT -->
+<div class="announcement">
+    <i class="fa-solid fa-truck-fast"></i>
+
+    <span id="announcementText">
+        Free shipping on orders above ₹999
+    </span>
+
+    <i class="fa-solid fa-sparkles"></i>
+</div>
+
+
+<!-- SEARCH -->
+<section class="shop-tools">
+
+    <div class="search-box">
+
+        <i class="fa-solid fa-magnifying-glass"></i>
+
+        <input
+            type="text"
+            id="searchInput"
+            placeholder="Search bangles..."
+            oninput="renderProducts()">
+
+    </div>
+
+    <button class="filter-btn" onclick="toggleFilters()">
+        <i class="fa-solid fa-sliders"></i>
+        Filters
+    </button>
+
+</section>
+
+
+<!-- FILTERS -->
+<div id="filterPanel" class="filter-panel">
+
+    <button class="category-btn active"
+            data-category="All"
+            onclick="setCategory('All')">
+        All
+    </button>
+
+    <button class="category-btn"
+            data-category="Bridal"
+            onclick="setCategory('Bridal')">
+        Bridal
+    </button>
+
+    <button class="category-btn"
+            data-category="Velvet"
+            onclick="setCategory('Velvet')">
+        Velvet
+    </button>
+
+    <button class="category-btn"
+            data-category="Glass"
+            onclick="setCategory('Glass')">
+        Glass
+    </button>
+
+    <button class="category-btn"
+            data-category="Gold Plated"
+            onclick="setCategory('Gold Plated')">
+        Gold Plated
+    </button>
+
+</div>
+
+
+<!-- PRODUCTS -->
+<section id="products" class="products-section">
+
+    <div class="section-heading">
+
+        <div>
+            <span class="section-small">OUR COLLECTION</span>
+            <h2>Shop Bangles</h2>
+        </div>
+
+        <span id="productResultCount"></span>
+
+    </div>
+
+
+    <div id="productGrid" class="product-grid"></div>
+
+</section>
+
+
+<!-- WHY US -->
+<section class="features-section">
+
+    <div class="feature">
+        <i class="fa-solid fa-gem"></i>
+        <h3>Premium Quality</h3>
+        <p>Beautiful collections selected with care.</p>
+    </div>
+
+    <div class="feature">
+        <i class="fa-solid fa-truck-fast"></i>
+        <h3>Easy Delivery</h3>
+        <p>Convenient order and delivery process.</p>
+    </div>
+
+    <div class="feature">
+        <i class="fa-solid fa-shield-heart"></i>
+        <h3>Trusted Store</h3>
+        <p>Customer-friendly shopping experience.</p>
+    </div>
+
+    <div class="feature">
+        <i class="fa-solid fa-headset"></i>
+        <h3>Support</h3>
+        <p>Contact us whenever you need help.</p>
+    </div>
+
+</section>
+
+
+<!-- FOOTER -->
+<footer class="footer">
+
+    <div class="footer-main">
+
+        <div>
+            <h2 id="footerStoreName">
+                Waghmare Bangles Store Birawali
+            </h2>
+
+            <p>
+                Traditional beauty with modern shopping.
+            </p>
+        </div>
+
+
+        <div>
+            <h3>Store</h3>
+
+            <button onclick="scrollToTop()">Home</button>
+            <button onclick="setCategory('Bridal')">Bridal</button>
+            <button onclick="setCategory('Velvet')">Velvet</button>
+            <button onclick="setCategory('Glass')">Glass</button>
+            <button onclick="setCategory('Gold Plated')">Gold Plated</button>
+        </div>
+
+
+        <div>
+            <h3>Contact</h3>
+
+            <p id="footerAddress">
+                At.Birawali.Post.Shivali.Talu.Ausa.Dist.Latur.
+            </p>
+
+            <a id="footerPhone"
+               href="tel:8329461513">
+                <i class="fa-solid fa-phone"></i>
+                8329461513
+            </a>
+
+        </div>
+
+    </div>
+
+
+    <div class="footer-bottom">
+
+        <span>
+            © <span id="currentYear"></span>
+            Waghmare Bangles Store
+        </span>
+
+        <span>
+            Made with ❤️ by Rohit
+        </span>
+
+    </div>
+
+</footer>
+
+
+<!-- CART DRAWER -->
+<div id="cartOverlay"
+     class="overlay"
+     onclick="closeCart()"></div>
+
+<aside id="cartDrawer" class="side-drawer">
+
+    <div class="drawer-header">
+
+        <h2>
+            <i class="fa-solid fa-bag-shopping"></i>
+            Your Cart
+        </h2>
+
+        <button onclick="closeCart()">
+            <i class="fa-solid fa-xmark"></i>
+        </button>
+
+    </div>
+
+
+    <div id="cartItems" class="drawer-content"></div>
+
+
+    <div class="cart-summary">
+
+        <div>
+            <span>Subtotal</span>
+            <strong id="cartSubtotal">₹0</strong>
+        </div>
+
+        <div>
+            <span>Shipping</span>
+            <strong id="cartShipping">₹0</strong>
+        </div>
+
+        <div class="grand-total">
+            <span>Total</span>
+            <strong id="cartTotal">₹0</strong>
+        </div>
+
+        <button class="primary-btn full"
+                onclick="openCheckout()">
+            Proceed to Checkout
+        </button>
+
+    </div>
+
+</aside>
+
+
+<!-- WISHLIST -->
+<div id="wishlistModal" class="modal">
+
+    <div class="modal-box">
+
+        <div class="modal-header">
+            <h2>❤️ Wishlist</h2>
+
+            <button onclick="closeModal('wishlistModal')">
+                <i class="fa-solid fa-xmark"></i>
+            </button>
+        </div>
+
+        <div id="wishlistItems"></div>
+
+    </div>
+
+</div>
+
+
+<!-- PRODUCT MODAL -->
+<div id="productModal" class="modal">
+
+    <div class="modal-box product-detail-modal">
+
+        <button class="modal-close"
+                onclick="closeModal('productModal')">
+            <i class="fa-solid fa-xmark"></i>
+        </button>
+
+        <div id="productDetails"></div>
+
+    </div>
+
+</div>
+
+
+<!-- CHECKOUT -->
+<div id="checkoutModal" class="modal">
+
+    <div class="modal-box checkout-box">
+
+        <div class="modal-header">
+
+            <h2>
+                Checkout
+            </h2>
+
+            <button onclick="closeModal('checkoutModal')">
+                <i class="fa-solid fa-xmark"></i>
+            </button>
+
+        </div>
+
+
+        <form id="checkoutForm">
+
+            <div class="form-grid">
+
+                <div class="input-group">
+                    <label>Full Name</label>
+                    <input id="customerName" required>
+                </div>
+
+                <div class="input-group">
+                    <label>Mobile Number</label>
+                    <input id="customerPhone"
+                           type="tel"
+                           required
+                           pattern="[0-9]{10}">
+                </div>
+
+            </div>
+
+
+            <div class="input-group">
+                <label>Delivery Address</label>
+                <textarea id="customerAddress"
+                          rows="3"
+                          required></textarea>
+            </div>
+
+
+            <div class="input-group">
+                <label>City / Village</label>
+                <input id="customerCity" required>
+            </div>
+
+
+            <div class="input-group">
+
+                <label>Coupon Code</label>
+
+                <div class="coupon-row">
+
+                    <input id="couponInput"
+                           placeholder="Example: ROHIT10">
+
+                    <button type="button"
+                            class="outline-btn"
+                            onclick="applyCoupon()">
+                        Apply
+                    </button>
+
+                </div>
+
+                <small id="couponMessage"></small>
+
+            </div>
+
+
+            <div id="checkoutSummary"
+                 class="checkout-summary"></div>
+
+
+            <button class="primary-btn full"
+                    type="submit">
+                Continue to Payment
+                <i class="fa-solid fa-arrow-right"></i>
+            </button>
+
+        </form>
+
+    </div>
+
+</div>
+
+
+<!-- PAYMENT -->
+<div id="paymentModal" class="modal">
+
+    <div class="modal-box payment-box">
+
+        <div class="modal-header">
+
+            <h2>
+                <i class="fa-solid fa-qrcode"></i>
+                UPI Payment
+            </h2>
+
+            <button onclick="closeModal('paymentModal')">
+                <i class="fa-solid fa-xmark"></i>
+            </button>
+
+        </div>
+
+
+        <div class="payment-amount">
+
+            <span>Amount Payable</span>
+
+            <strong id="paymentAmount">
+                ₹0
+            </strong>
+
+        </div>
+
+
+        <div id="qrCode"
+             class="qr-box"></div>
+
+
+        <p class="payment-note">
+            Scan the QR code using any supported UPI app.
+            Verify the amount before paying.
+        </p>
+
+
+        <div class="upi-id-box">
+
+            <span>UPI ID</span>
+
+            <strong id="paymentUpi">
+                8329461513@axl
+            </strong>
+
+            <button onclick="copyUPI()">
+                <i class="fa-regular fa-copy"></i>
+            </button>
+
+        </div>
+
+
+        <a id="upiPayButton"
+           class="primary-btn full"
+           href="#">
+            <i class="fa-solid fa-mobile-screen-button"></i>
+            Pay using UPI App
+        </a>
+
+
+        <button class="outline-btn full"
+                onclick="submitPayment()">
+            I Have Completed Payment
+        </button>
+
+
+        <small class="payment-warning">
+            Payment is marked as submitted for admin verification.
+        </small>
+
+    </div>
+
+</div>
+
+
+<!-- ORDER SUCCESS -->
+<div id="successModal" class="modal">
+
+    <div class="modal-box success-box">
+
+        <div class="success-icon">
+            <i class="fa-solid fa-check"></i>
+        </div>
+
+        <h2>Order Submitted Successfully!</h2>
+
+        <p>
+            Your payment has been submitted for verification.
+            Your order will be confirmed after admin approval.
+        </p>
+
+        <div id="successOrderId"
+             class="order-id"></div>
+
+        <button class="primary-btn full"
+                onclick="viewMyOrder()">
+            View Order
+        </button>
+
+        <button class="outline-btn full"
+                onclick="closeModal('successModal')">
+            Continue Shopping
+        </button>
+
+    </div>
+
+</div>
+
+
+<!-- MY ORDER -->
+<div id="orderModal" class="modal">
+
+    <div class="modal-box">
+
+        <div class="modal-header">
+
+            <h2>
+                📦 My Order
+            </h2>
+
+            <button onclick="closeModal('orderModal')">
+                <i class="fa-solid fa-xmark"></i>
+            </button>
+
+        </div>
+
+        <div id="myOrderDetails"></div>
+
+    </div>
+
+</div>
+
+
+<!-- ADMIN LOGIN -->
+<div id="adminLoginModal" class="modal">
+
+    <div class="modal-box login-box">
+
+        <div class="login-icon">
+            <i class="fa-solid fa-user-shield"></i>
+        </div>
+
+        <h2>Admin Access</h2>
+
+        <p>Owner dashboard</p>
+
+        <input type="password"
+               id="adminPasswordInput"
+               placeholder="Enter admin password">
+
+        <button class="primary-btn full"
+                onclick="adminLogin()">
+            Login
+        </button>
+
+        <button class="text-btn"
+                onclick="closeModal('adminLoginModal')">
+            Cancel
+        </button>
+
+    </div>
+
+</div>
+
+
+<!-- ADMIN PANEL -->
+<div id="adminModal" class="modal admin-modal">
+
+    <div class="admin-window">
+
+        <aside class="admin-sidebar">
+
+            <div class="admin-brand">
+
+                <div class="admin-logo">
+                    <i class="fa-solid fa-crown"></i>
+                </div>
+
+                <div>
+                    <strong>Owner Panel</strong>
+                    <small>Full Control</small>
+                </div>
+
+            </div>
+
+
+            <button class="admin-nav active"
+                    data-admin-section="dashboard"
+                    onclick="showAdminSection('dashboard')">
+                <i class="fa-solid fa-chart-line"></i>
+                Dashboard
+            </button>
+
+
+            <button class="admin-nav"
+                    data-admin-section="products"
+                    onclick="showAdminSection('products')">
+                <i class="fa-solid fa-box-open"></i>
+                Products
+            </button>
+
+
+            <button class="admin-nav"
+                    data-admin-section="orders"
+                    onclick="showAdminSection('orders')">
+                <i class="fa-solid fa-receipt"></i>
+                Orders
+            </button>
+
+
+            <button class="admin-nav"
+                    data-admin-section="customers"
+                    onclick="showAdminSection('customers')">
+                <i class="fa-solid fa-users"></i>
+                Customers
+            </button>
+
+
+            <button class="admin-nav"
+                    data-admin-section="coupons"
+                    onclick="showAdminSection('coupons')">
+                <i class="fa-solid fa-ticket"></i>
+                Coupons
+            </button>
+
+
+            <button class="admin-nav"
+                    data-admin-section="settings"
+                    onclick="showAdminSection('settings')">
+                <i class="fa-solid fa-gear"></i>
+                Store Settings
+            </button>
+
+
+            <button class="admin-nav"
+                    data-admin-section="data"
+                    onclick="showAdminSection('data')">
+                <i class="fa-solid fa-database"></i>
+                Data & Backup
+            </button>
+
+
+            <div class="admin-sidebar-bottom">
+
+                <button onclick="openStoreLocation()">
+                    <i class="fa-solid fa-location-dot"></i>
+                    Store Location
+                </button>
+
+                <button onclick="adminLogout()">
+                    <i class="fa-solid fa-right-from-bracket"></i>
+                    Logout
+                </button>
+
+            </div>
+
+        </aside>
+
+
+        <main class="admin-main">
+
+            <div class="admin-topbar">
+
+                <div>
+                    <h2 id="adminSectionTitle">
+                        Dashboard
+                    </h2>
+
+                    <span>
+                        Waghmare Bangles Store Birawali
+                    </span>
+                </div>
+
+                <button onclick="closeModal('adminModal')">
+                    <i class="fa-solid fa-xmark"></i>
+                </button>
+
+            </div>
+
+
+            <!-- DASHBOARD -->
+            <section id="admin-dashboard"
+                     class="admin-section active">
+
+                <div class="stats-grid">
+
+                    <div class="stat-card">
+                        <i class="fa-solid fa-box"></i>
+                        <span>Products</span>
+                        <strong id="statProducts">0</strong>
+                    </div>
+
+                    <div class="stat-card">
+                        <i class="fa-solid fa-shopping-bag"></i>
+                        <span>Orders</span>
+                        <strong id="statOrders">0</strong>
+                    </div>
+
+                    <div class="stat-card">
+                        <i class="fa-solid fa-indian-rupee-sign"></i>
+                        <span>Revenue</span>
+                        <strong id="statRevenue">₹0</strong>
+                    </div>
+
+                    <div class="stat-card">
+                        <i class="fa-solid fa-clock"></i>
+                        <span>Pending</span>
+                        <strong id="statPending">0</strong>
+                    </div>
+
+                </div>
+
+
+                <div class="admin-card">
+
+                    <div class="admin-card-title">
+                        <h3>Recent Orders</h3>
+
+                        <button onclick="showAdminSection('orders')">
+                            View All
+                        </button>
+                    </div>
+
+                    <div id="recentOrders"></div>
+
+                </div>
+
+            </section>
+
+
+            <!-- PRODUCTS -->
+            <section id="admin-products"
+                     class="admin-section">
+
+                <div class="admin-card">
+
+                    <div class="admin-card-title">
+
+                        <h3>Product Management</h3>
+
+                        <button class="primary-btn"
+                                onclick="openProductEditor()">
+                            <i class="fa-solid fa-plus"></i>
+                            Add Product
+                        </button>
+
+                    </div>
+
+                    <div id="adminProductList"></div>
+
+                </div>
+
+            </section>
+
+
+            <!-- ORDERS -->
+            <section id="admin-orders"
+                     class="admin-section">
+
+                <div class="admin-card">
+
+                    <div class="admin-card-title">
+
+                        <h3>Order Management</h3>
+
+                        <select id="orderFilter"
+                                onchange="renderAdminOrders()">
+
+                            <option value="All">All Orders</option>
+                            <option value="Payment Pending">Payment Pending</option>
+                            <option value="Payment Submitted">Payment Submitted</option>
+                            <option value="Order Placed">Order Placed</option>
+                            <option value="Processing">Processing</option>
+                            <option value="Shipped">Shipped</option>
+                            <option value="Delivered">Delivered</option>
+                            <option value="Completed">Completed</option>
+                            <option value="Cancelled">Cancelled</option>
+
+                        </select>
+
+                    </div>
+
+                    <div id="adminOrderList"></div>
+
+                </div>
+
+            </section>
+
+
+            <!-- CUSTOMERS -->
+            <section id="admin-customers"
+                     class="admin-section">
+
+                <div class="admin-card">
+
+                    <div class="admin-card-title">
+                        <h3>Customers</h3>
+                    </div>
+
+                    <div id="adminCustomerList"></div>
+
+                </div>
+
+            </section>
+
+
+            <!-- COUPONS -->
+            <section id="admin-coupons"
+                     class="admin-section">
+
+                <div class="admin-card">
+
+                    <div class="admin-card-title">
+                        <h3>Coupons</h3>
+                    </div>
+
+                    <form id="couponForm"
+                          class="admin-form">
+
+                        <input id="newCouponCode"
+                               placeholder="Coupon code"
+                               required>
+
+                        <input id="newCouponPercent"
+                               type="number"
+                               min="1"
+                               max="100"
+                               placeholder="Discount %"
+                               required>
+
+                        <button class="primary-btn">
+                            Add Coupon
+                        </button>
+
+                    </form>
+
+
+                    <div id="adminCouponList"></div>
+
+                </div>
+
+            </section>
+
+
+            <!-- SETTINGS -->
+            <section id="admin-settings"
+                     class="admin-section">
+
+                <div class="admin-card">
+
+                    <div class="admin-card-title">
+                        <h3>Store Settings</h3>
+                    </div>
+
+
+                    <form id="settingsForm"
+                          class="settings-form">
+
+                        <div class="form-grid">
+
+                            <div class="input-group">
+                                <label>Store Name</label>
+                                <input id="setStoreName">
+                            </div>
+
+                            <div class="input-group">
+                                <label>Contact Number</label>
+                                <input id="setPhone">
+                            </div>
+
+                        </div>
+
+
+                        <div class="input-group">
+                            <label>Logo Image URL</label>
+                            <input id="setLogo"
+                                   placeholder="https://...">
+                        </div>
+
+
+                        <div class="input-group">
+                            <label>Announcement</label>
+                            <input id="setAnnouncement">
+                        </div>
+
+
+                        <div class="input-group">
+                            <label>Address</label>
+                            <textarea id="setAddress"
+                                      rows="3"></textarea>
+                        </div>
+
+
+                        <div class="form-grid">
+
+                            <div class="input-group">
+                                <label>UPI ID</label>
+                                <input id="setUPI">
+                            </div>
+
+                            <div class="input-group">
+                                <label>Free Shipping Above</label>
+                                <input id="setFreeShipping"
+                                       type="number">
+                            </div>
+
+                        </div>
+
+
+                        <div class="form-grid">
+
+                            <div class="input-group">
+                                <label>Shipping Charge</label>
+                                <input id="setShipping"
+                                       type="number">
+                            </div>
+
+                            <div class="input-group">
+                                <label>Admin Password</label>
+                                <input id="setPassword"
+                                       type="password">
+                            </div>
+
+                        </div>
+
+
+                        <button class="primary-btn">
+                            Save All Settings
+                        </button>
+
+                    </form>
+
+                </div>
+
+            </section>
+
+
+            <!-- DATA -->
+            <section id="admin-data"
+                     class="admin-section">
+
+                <div class="admin-card">
+
+                    <div class="admin-card-title">
+                        <h3>Data & Backup</h3>
+                    </div>
+
+
+                    <p class="data-info">
+                        Your current frontend version stores products,
+                        orders, customers and settings in this browser's
+                        localStorage.
+                    </p>
+
+
+                    <div class="data-actions">
+
+                        <button class="primary-btn"
+                                onclick="exportData()">
+                            <i class="fa-solid fa-download"></i>
+                            Export Backup
+                        </button>
+
+                        <button class="outline-btn"
+                                onclick="document.getElementById('importFile').click()">
+                            <i class="fa-solid fa-upload"></i>
+                            Import Backup
+                        </button>
+
+                        <input type="file"
+                               id="importFile"
+                               accept=".json"
+                               hidden
+                               onchange="importData(event)">
+
+                        <button class="danger-btn"
+                                onclick="clearStoreData()">
+                            <i class="fa-solid fa-trash"></i>
+                            Reset Store Data
+                        </button>
+
+                    </div>
+
+
+                    <div class="storage-status">
+
+                        <i class="fa-solid fa-database"></i>
+
+                        <div>
+                            <strong>Storage:</strong>
+                            Browser localStorage
+                            <br>
+                            <small>
+                                Export your backup regularly.
+                            </small>
+                        </div>
+
+                    </div>
+
+                </div>
+
+
+                <div class="admin-card">
+
+                    <div class="admin-card-title">
+                        <h3>Activity Log</h3>
+                    </div>
+
+                    <div id="activityLog"></div>
+
+                </div>
+
+            </section>
+
+        </main>
+
+    </div>
+
+</div>
+
+
+<!-- PRODUCT EDITOR -->
+<div id="productEditorModal" class="modal">
+
+    <div class="modal-box large-modal">
+
+        <div class="modal-header">
+
+            <h2 id="productEditorTitle">
+                Add Product
+            </h2>
+
+            <button onclick="closeModal('productEditorModal')">
+                <i class="fa-solid fa-xmark"></i>
+            </button>
+
+        </div>
+
+
+        <form id="productForm">
+
+            <input type="hidden" id="editProductId">
+
+
+            <div class="form-grid">
+
+                <div class="input-group">
+                    <label>Product Name</label>
+                    <input id="productName" required>
+                </div>
+
+                <div class="input-group">
+                    <label>Category</label>
+
+                    <select id="productCategory">
+
+                        <option>Bridal</option>
+                        <option>Velvet</option>
+                        <option>Glass</option>
+                        <option>Gold Plated</option>
+
+                    </select>
+
+                </div>
+
+            </div>
+
+
+            <div class="form-grid">
+
+                <div class="input-group">
+                    <label>Selling Price ₹</label>
+                    <input id="productPrice"
+                           type="number"
+                           min="0"
+                           required>
+                </div>
+
+                <div class="input-group">
+                    <label>MRP ₹</label>
+                    <input id="productMRP"
+                           type="number"
+                           min="0">
+                </div>
+
+            </div>
+
+
+            <div class="form-grid">
+
+                <div class="input-group">
+                    <label>Stock</label>
+                    <input id="productStock"
+                           type="number"
+                           min="0"
+                           value="10">
+                </div>
+
+                <div class="input-group">
+                    <label>Badge</label>
+
+                    <select id="productBadge">
+                        <option value="">None</option>
+                        <option>New</option>
+                        <option>Best Seller</option>
+                        <option>Premium</option>
+                        <option>Sale</option>
+                    </select>
+
+                </div>
+
+            </div>
+
+
+            <div class="input-group">
+
+                <label>Main Product Image URL</label>
+
+                <input id="productImage"
+                       placeholder="https://example.com/image.jpg"
+                       required>
+
+            </div>
+
+
+            <div class="input-group">
+
+                <label>Gallery Image URLs</label>
+
+                <textarea id="productGallery"
+                          rows="3"
+                          placeholder="Paste URLs separated by commas"></textarea>
+
+            </div>
+
+
+            <div class="input-group">
+
+                <label>Description</label>
+
+                <textarea id="productDescription"
+                          rows="4"></textarea>
+
+            </div>
+
+
+            <div class="form-grid">
+
+                <div class="input-group">
+                    <label>Material</label>
+                    <input id="productMaterial"
+                           placeholder="Glass / Velvet / Metal">
+                </div>
+
+                <div class="input-group">
+                    <label>Size</label>
+                    <input id="productSize"
+                           placeholder="2.4, 2.6, 2.8">
+                </div>
+
+            </div>
+
+
+            <div class="form-check">
+
+                <input type="checkbox"
+                       id="productVisible"
+                       checked>
+
+                <label for="productVisible">
+                    Show product in store
+                </label>
+
+            </div>
+
+
+            <button class="primary-btn full">
+                Save Product
+            </button>
+
+        </form>
+
+    </div>
+
+</div>
+
+
+<!-- RECEIPT -->
+<div id="receiptModal" class="modal">
+
+    <div class="modal-box receipt-box">
+
+        <div class="modal-header no-print">
+
+            <h2>Receipt</h2>
+
+            <button onclick="closeModal('receiptModal')">
+                <i class="fa-solid fa-xmark"></i>
+            </button>
+
+        </div>
+
+        <div id="receiptContent"></div>
+
+        <button class="primary-btn full no-print"
+                onclick="printReceipt()">
+            <i class="fa-solid fa-print"></i>
+            Print / Save Receipt
+        </button>
+
+    </div>
+
+</div>
+
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/qrcodejs/1.0.0/qrcode.min.js"></script>
+
+<script src="app.js"></script>
+
+</body>
+</html>
